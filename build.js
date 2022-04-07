@@ -2,42 +2,34 @@
 
 // Node.js v8+ only
 
-'use strict';
+"use strict";
 
-require('essentials');
+require("essentials");
 
-const path = require('path');
-const spawn = require('child-process-ext/spawn');
-const fse = require('fs-extra');
+const path = require("path");
+const spawn = require("child-process-ext/spawn");
+const fse = require("fs-extra");
 
-const spawnOptions = { stdio: 'inherit' };
+const spawnOptions = { stdio: "inherit" };
 
 (async () => {
-  // To bundle npm with a binary we need to install it
-  process.stdout.write('Install npm\n');
-  // Hard code npm version to one that comes with lastest Node.js
-  // It's due to fact that npm tends to issue buggy releases
-  // Node.js confirms on given version before including it within its bundle
-  // Version mappings reference: https://nodejs.org/en/download/releases/
-  await spawn('npm', ['install', '--no-save', 'npm@8.1.2'], spawnOptions);
-
   try {
-    process.stdout.write('Build binaries\n');
+    process.stdout.write("Build binaries\n");
     await spawn(
-      'node',
+      "node",
       [
-        './node_modules/.bin/pkg',
-        '-c',
-        'config.js',
-        '--targets',
-        'node16-linux-x64,node16-mac-x64,node16-win-x64',
-        '--out-path',
-        'dist',
-        'index.js',
+        "./node_modules/.bin/pkg",
+        "-c",
+        "config.js",
+        "--targets",
+        "node16-linux-x64,node16-mac-x64,node16-win-x64",
+        "--out-path",
+        "dist",
+        "index.js",
       ],
       spawnOptions
     );
   } finally {
-    await fse.remove(path.join(__dirname, 'node_modules/npm'));
+    await fse.remove(path.join(__dirname, "node_modules/npm"));
   }
 })();

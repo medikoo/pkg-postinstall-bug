@@ -8,6 +8,12 @@ const localNpmBinPath = path.join(
 );
 
 (async () => {
+  console.log("RUN", "node", [
+    localNpmBinPath,
+    "install",
+    "--no-save",
+    "es5-ext",
+  ]);
   await spawn("node", [localNpmBinPath, "install", "--no-save", "es5-ext"], {
     stdio: "inherit",
   });

@@ -1,0 +1,13 @@
+{
+  "name": "pkg-repro-bug",
+  "dependencies": {
+    "child-process-ext": "^2.1.1"
+  },
+  "devDependencies": {
+    "pkg": "5.5.2"
+  },
+  "scripts": {
+    "pkg:build": "node ./build.js"
+  },
+  "license": "MIT"
+}

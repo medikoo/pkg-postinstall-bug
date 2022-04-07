@@ -13,23 +13,19 @@ const fse = require("fs-extra");
 const spawnOptions = { stdio: "inherit" };
 
 (async () => {
-  try {
-    process.stdout.write("Build binaries\n");
-    await spawn(
-      "node",
-      [
-        "./node_modules/.bin/pkg",
-        "-c",
-        "config.js",
-        "--targets",
-        "node16-linux-x64,node16-mac-x64,node16-win-x64",
-        "--out-path",
-        "dist",
-        "index.js",
-      ],
-      spawnOptions
-    );
-  } finally {
-    await fse.remove(path.join(__dirname, "node_modules/npm"));
-  }
+  process.stdout.write("Build binaries\n");
+  await spawn(
+    "node",
+    [
+      "./node_modules/.bin/pkg",
+      "-c",
+      "config.js",
+      "--targets",
+      "node16-linux-x64,node16-mac-x64,node16-win-x64",
+      "--out-path",
+      "dist",
+      "index.js",
+    ],
+    spawnOptions
+  );
 })();
